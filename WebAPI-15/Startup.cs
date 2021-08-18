@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI_15.Controllers;
 using WebAPI_15.Data;
+using WebAPI_15.Data.Services;
 
 namespace WebAPI_15
 {
@@ -34,6 +35,7 @@ namespace WebAPI_15
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
+            services.AddTransient<BookService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Librarry", Version = "v1" });
