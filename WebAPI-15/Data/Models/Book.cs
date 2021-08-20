@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI_15.Data.Models;
 
 namespace WebAPI_15.Data
 {
@@ -15,7 +16,11 @@ namespace WebAPI_15.Data
         public int? Rate { get; set; }
         public string Genre { get; set; }
         public string ImageURL { get; set; }
-        public string Author { get; set; }
         public DateTime DateAdded { get; set; }
+
+        public int PublisherId { get; set; }
+        public Publisher Publisher { get; set; }
+
+        public List<Book_Author> Book_Authors { get; set; }
     }
 }

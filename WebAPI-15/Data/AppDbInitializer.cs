@@ -23,7 +23,6 @@ namespace WebAPI_15.Data
                     {
                         Title = "C# 8.0 and .NET Core 3.0 – Modern Cross-Platform Development: Build applications with C#",
                         Description = "C# 8.0 and .NET Core 3.0 – Modern Cross-Platform Development: Build applications with C#",
-                        Author = "Mark J. Price",
                         IsRead = true,
                         Rate = 4,
                         DateRead = DateTime.Now.AddDays(-24),
@@ -35,7 +34,6 @@ namespace WebAPI_15.Data
                     {
                         Title = "1984",
                         Description = "Последний роман «1984» культового британского писателя Джорджа Оруэлла вышел в 1949 году — за год до его смерти. Он имел бешеную популярность в Англии и США, был переведен более чем на шестьдесят языков, неоднократно экранизировался. Но в Советском Союзе долгие годы даже имени его автора никто не слышал... Отечественные политики называли Оруэлла троцкистом. Его книги были под запретом сорок лет. «Роман Оруэлла представляет собой разнузданную клевету на социализм и социалистическое общество», — говорилось об антиутопии «1984» в секретной записке Всесоюзного общества культурной связи с заграницей.",
-                        Author = "Джордж Оруэлл",
                         IsRead = false,
                         Genre = "Romance",
                         ImageURL = "https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/31b681157c4c1a5551b0db4896e7972f/c/o/cover1__w600_1__120.jpg",

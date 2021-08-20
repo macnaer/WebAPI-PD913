@@ -63,7 +63,7 @@ namespace WebAPI_15
                 endpoints.MapControllers();
             });
 
-            AppDbInitializer.Seed(app);
+            //AppDbInitializer.Seed(app);
         }
     }
 }

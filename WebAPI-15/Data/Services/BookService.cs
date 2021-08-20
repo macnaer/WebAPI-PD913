@@ -32,7 +32,7 @@ namespace WebAPI_15.Data.Services
                 _book.Description = book.Description;
                 _book.IsRead = book.IsRead;
                 _book.DateRead = book.DateRead;
-                _book.Author = book.Author;
+                //_book.Author = book.Author;
                 _book.Rate = book.Rate;
                 _book.Genre = book.Genre;
                 _book.ImageURL = book.ImageURL;
