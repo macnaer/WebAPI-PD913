@@ -25,5 +25,19 @@ namespace WebAPI_15.Controllers
             var newAuthor = _authorsService.AddAuthor(author);
             return Created(nameof(AddAuthor), newAuthor);
         }
+
+        [HttpGet("get-author-with-book/{id}")]
+        public IActionResult GetAuthorWithBooks(int id)
+        {
+            var _books = _authorsService.GetAuthorWithBooks(id);
+            if(_books != null)
+            {
+                return Ok(_books);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

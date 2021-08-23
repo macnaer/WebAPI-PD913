@@ -9,4 +9,10 @@ namespace WebAPI_15.Data.ViewModels
     {
         public string FullName { get; set; }
     }
+
+    public class AuthorWithBookVM
+    {
+        public string FullName { get; set; }
+        public List<string> BookTitles { get; set; }
+    }
 }
