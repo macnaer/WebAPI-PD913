@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using WebAPI_15.Controllers;
 using WebAPI_15.Data;
 using WebAPI_15.Data.Services;
+using WebAPI_15.Exceptions;
 
 namespace WebAPI_15
 {
@@ -59,6 +60,8 @@ namespace WebAPI_15
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.ConfigureCustomExceptionHandler();
 
             app.UseEndpoints(endpoints =>
             {
