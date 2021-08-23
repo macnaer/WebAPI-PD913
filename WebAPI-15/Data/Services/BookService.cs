@@ -50,6 +50,24 @@ namespace WebAPI_15.Data.Services
 
         public List<Book> GetAllBooks() => _context.Books.ToList();
 
+        public BookWithAuthorsVM GetBookById(int bookId)
+        {
+            var _book = _context.Books.Where(n => n.Id == bookId).Select(book => new BookWithAuthorsVM()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.DateRead,
+                Rate = book.Rate,
+                Genre = book.Genre,
+                ImageURL = book.ImageURL,
+                DateAdded = book.DateAdded,
+                PublisherName = book.Publisher.Name,
+                AithorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+            return _book;
+        }
+
         public void AddBook(Book book)
         {
             _context.Books.Add(book);

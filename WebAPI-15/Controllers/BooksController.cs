@@ -35,6 +35,20 @@ namespace WebAPI_15.Controllers
             return Ok(allBooks);
         }
 
+        [HttpGet("get-book-by-id/{id}")]
+        public IActionResult GetBookById(int id)
+        {
+            var _book = _bookService.GetBookById(id);
+            if(_book != null)
+            {
+                return Ok(_book);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         [HttpPost("add-book")]
         public IActionResult AddBook([FromBody] Book book)
         {
