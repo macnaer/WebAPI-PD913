@@ -30,7 +30,7 @@ namespace WebAPI_15.Data.Services
             return _publisher;
         }
 
-        public List<Publisher> GetAllPublishers()
+        public List<Publisher> GetAllPublishers(string sortBy, string searchString, int pageNumber)
         {
             var allPublishers = _context.Publishers.ToList();
             return allPublishers;

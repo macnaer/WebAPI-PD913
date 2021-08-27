@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,23 @@ namespace WebAPI_15.Controllers
     public class PublishersController : ControllerBase
     {
         private readonly PublishersService _publishersService;
-        public PublishersController(PublishersService publishersService)
+        private readonly ILogger<PublishersController> _logger;
+        public PublishersController(PublishersService publishersService, ILogger<PublishersController> logger)
         {
             _publishersService = publishersService;
+            _logger = logger;
         }
 
         [HttpGet("get-all-publishers")]
-        public IActionResult GetAllPublishers()
+        public IActionResult GetAllPublishers(string sortBy, string searchString, int pageNumber)
         {
-            var allPublishers = _publishersService.GetAllPublishers();
+            _logger.LogInformation($"sortBy: {sortBy}\tsearchString: {searchString}\tpageNumber: {pageNumber}");
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+
+            }
+
+            var allPublishers = _publishersService.GetAllPublishers(sortBy, searchString, pageNumber);
             return Ok(allPublishers);
         }
 
@@ -30,7 +39,7 @@ namespace WebAPI_15.Controllers
         public IActionResult GetPublisherById(int id)
         {
             var _publisher = _publishersService.GetPublisherById(id);
-            if(_publisher != null)
+            if (_publisher != null)
             {
                 return Ok(_publisher);
             }
@@ -44,7 +53,7 @@ namespace WebAPI_15.Controllers
         public IActionResult GetPublisherData(int id)
         {
             var _allPublisherData = _publishersService.GetPublisherData(id);
-            if(_allPublisherData != null)
+            if (_allPublisherData != null)
             {
                 return Ok(_allPublisherData);
             }
@@ -68,7 +77,7 @@ namespace WebAPI_15.Controllers
             {
                 _publishersService.DeletePublisherById(id);
                 return Ok();
-            } 
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);

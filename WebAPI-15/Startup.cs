@@ -39,6 +39,7 @@ namespace WebAPI_15
             services.AddTransient<BookService>();
             services.AddTransient<PublishersService>();
             services.AddTransient<AuthorsService>();
+            services.AddTransient<LogsService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Librarry", Version = "v1" });
@@ -46,7 +47,7 @@ namespace WebAPI_15
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -61,7 +62,7 @@ namespace WebAPI_15
 
             app.UseAuthorization();
 
-            app.ConfigureCustomExceptionHandler();
+            app.ConfigureBuildInExceptionHandler(loggerFactory);
 
             app.UseEndpoints(endpoints =>
             {
