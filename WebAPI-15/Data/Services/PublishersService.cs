@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI_15.Controllers;
 using WebAPI_15.Data.Models;
+using WebAPI_15.Data.Paging;
 using WebAPI_15.Data.ViewModels;
 
 namespace WebAPI_15.Data.Services
@@ -30,9 +31,31 @@ namespace WebAPI_15.Data.Services
             return _publisher;
         }
 
-        public List<Publisher> GetAllPublishers(string sortBy, string searchString, int pageNumber)
+        public List<Publisher> GetAllPublishers(string sortBy, string searchString, int? pageNumber)
         {
-            var allPublishers = _context.Publishers.ToList();
+            var allPublishers = _context.Publishers.OrderBy(n => n.Name).ToList();
+
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {
+                    case "name_desc":
+                        allPublishers = allPublishers.OrderByDescending(n => n.Name).ToList();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                allPublishers = allPublishers.Where(n => n.Name.Contains(searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+
+            int pageSize = 6;
+            allPublishers = PaginationList<Publisher>.Create(allPublishers.AsQueryable(), pageNumber ?? 1, pageSize);
+
             return allPublishers;
         }
 
